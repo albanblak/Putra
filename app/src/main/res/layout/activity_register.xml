@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvName"
+        android:textSize="22sp"
+        android:text="@string/name"
+        >
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etName"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:textSize="22sp">
+    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvLastname"
+        android:textSize="22sp"
+        android:text="@string/lastname">
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etLastname"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:textSize="22sp">
+    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvEmail"
+        android:textSize="22sp"
+        android:text="@string/email">
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etEmail"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        android:textSize="22sp">
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPassword"
+        android:textSize="22sp"
+        android:text="@string/password">
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etPassword"
+        android:textSize="22sp"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword">
+    </EditText>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/registerBtn"
+        android:id="@+id/registerButton"
+        android:textSize="22sp"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        >
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+
+
+</LinearLayout>

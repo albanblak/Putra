@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Putra</string>
+
+    <string name="name">Name</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="registerBtn">Register</string>
+    <string name="loginBtn">Login</string>
+    <string name="tvMe">Me</string>
+    <string name="tvPets">Pets</string>
+    <string name="btnAddPet">Add Pet</string>
+</resources>

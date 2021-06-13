@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:padding="6dp">
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/tvEmail"
+       android:text="@string/email"
+       android:textSize="22sp"
+       >
+   </TextView>
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/etEmail"
+       android:imeOptions="actionNext"
+       android:hint="@string/email"
+       android:inputType="textEmailAddress"
+       android:autofillHints="">
+
+   </EditText>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/tvPassword"
+       android:text="@string/password"
+       android:textSize="22sp"
+       >
+   </TextView>
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/etPassword"
+       android:imeOptions="actionDone"
+       android:inputType="textPassword"
+       android:hint="@string/password"
+       android:autofillHints="">
+
+   </EditText>
+
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/loginBtn"
+       android:layout_gravity="center"
+       android:id="@+id/loginBtn"
+       >
+
+   </Button>
+
+
+
+</LinearLayout>
