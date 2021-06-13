@@ -19,7 +19,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +29,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText etName, etLastname, etEmail, etPassword;
     Button registerBtn;
-    int id;
+    int idLong;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    UserModel userModel = new UserModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 contentValues.put(DatabaseHelper.EMAIL, etEmail.getText().toString());
                 contentValues.put(DatabaseHelper.PASSWORD, etPassword.getText().toString());
 
-                Map<String, Object> user = new HashMap<>();
-                user.put("first","ada");
-                user.put("last","lovelace");
-                user.put("born",1815);
+
 
 
 
@@ -71,9 +70,17 @@ public class RegisterActivity extends AppCompatActivity {
                         //addToFireStore((int) id,etName.getText().toString(),etLastname.getText().toString(),etEmail.getText().toString(),etPassword.getText().toString());
 
                         Loginuser(DatabaseHelper.EMAIL,DatabaseHelper.PASSWORD);
+                        userModel.setId(idLong);
+                        userModel.setName(etName.getText().toString());
+                        userModel.setLastname(etLastname.getText().toString());
+                        userModel.setEmail(etEmail.getText().toString());
+                        userModel.setPassword(etPassword.getText().toString());
+                        Gson gsonParser = new Gson();
+                        String stringModel = gsonParser.toJson(userModel);
+
                         addToFireStore((int)id,etName.getText().toString(),etLastname.getText().toString(),etEmail.getText().toString(),etPassword.getText().toString());
                         Intent intent = new Intent(RegisterActivity.this,DashboardActivity.class);
-                        intent.putExtra(DatabaseHelper.NAME,etName.getText().toString());
+                        intent.putExtra("StringModel",stringModel);
                         startActivity(intent);
 
                     }else{
@@ -98,8 +105,8 @@ public class RegisterActivity extends AppCompatActivity {
         Cursor cursor = objDb.query(false,DatabaseHelper.TABLE_NAME,new String[]{DatabaseHelper.ID,DatabaseHelper.EMAIL, DatabaseHelper.PASSWORD},"Email"+ "=?",new String[]{email},"","","","");
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            id = cursor.getInt(0);
-            System.out.println("kjo eshte id: " + id );
+            idLong = cursor.getInt(0);
+            System.out.println("kjo eshte id: " + idLong );
             String dbUserEmail = cursor.getString(0);
             String dbUserPassword = cursor.getString(1);
             System.out.println(dbUserEmail);

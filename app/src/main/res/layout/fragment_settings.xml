@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_grey">
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/tvMe"
+       android:textSize="15dp"
+       android:paddingTop="20dp"
+       android:id="@+id/me"
+       android:paddingLeft="20dp"
+       android:paddingBottom="15dp"
+       >
+   </TextView>
+
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/melayout"
+       android:orientation="horizontal"
+       android:background="@android:color/white"
+       android:layout_below="@+id/me" >
+
+      <agency.tango.android.avatarview.views.AvatarView
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          app:av_border_color="@android:color/white"
+          app:av_border_width="4dp"
+          app:av_text_size_percentage="35"
+          android:id="@+id/imageViwer"
+          android:paddingLeft="5dp"
+          android:paddingTop="5dp"/>
+
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Albani"
+          android:textSize="20sp"
+          android:layout_toRightOf="@+id/imageViwer"
+          android:paddingLeft="20dp"
+          android:paddingTop="10dp"
+          android:id="@+id/tvName"
+          android:paddingStart="20dp"
+          android:textStyle="bold"
+          tools:ignore="RtlSymmetry"
+          android:layout_toEndOf="@+id/imageViwer" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Edit Profile"
+          android:layout_toRightOf="@id/imageViwer"
+          android:layout_below="@id/tvName"
+          android:layout_toEndOf="@id/imageViwer"
+          android:id="@+id/tvEditProfile"
+          android:paddingLeft="20dp"
+          android:paddingTop="5dp"/>
+   </RelativeLayout>
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/pet"
+       android:text="Pet"
+       android:layout_below="@id/melayout"
+       android:textSize="15dp"
+       android:paddingTop="20dp"
+       android:paddingLeft="15dp"
+       android:paddingBottom="15dp">
+
+   </TextView>
+
+
+
+
+
+
+
+   <ListView
+       android:id="@+id/petListView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/pet"
+       android:background="@color/light_grey"
+       />
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="test"
+       android:layout_below="@id/petListView"
+       android:id="@+id/poshteList">
+
+   </TextView>
+
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Add Pet"
+       android:id="@+id/btnAddPet"
+       android:layout_below="@id/petListView">
+
+   </Button>
+
+
+
+</RelativeLayout>

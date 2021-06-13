@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearPet"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_below="@+id/pet" >
+
+        <agency.tango.android.avatarview.views.AvatarView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:id="@+id/petimageViwer"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baloshi"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/petimageViwer"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:id="@+id/pettvName"
+            android:paddingStart="20dp"
+            android:textStyle="bold"
+
+            android:layout_toEndOf="@+id/petimageViwer"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
