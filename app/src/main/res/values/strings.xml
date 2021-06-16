@@ -10,4 +10,11 @@
     <string name="tvMe">Me</string>
     <string name="tvPets">Pets</string>
     <string name="btnAddPet">Add Pet</string>
+
+    <string name="tvpetName">Name</string>
+    <string name="tvpetType">Type</string>
+    <string name="tvpetBreed">Breed</string>
+    <string name="tvpetGender">Gender</string>
+    <string name="tvpetSize">Size</string>
+    <string name="tvpetBirth">Birth Year</string>
 </resources>

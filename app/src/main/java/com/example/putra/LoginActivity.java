@@ -2,7 +2,9 @@ package com.example.putra;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,10 +21,19 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button btnLogin;
-
-
     String stringModel;
     UserModel userModel = new UserModel();
+
+    SharedPreferences sharedPreferences;
+
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Id = "idKey";
+    public static final String Name = "nameKey";
+    public static final String Lastame = "lastnameKey";
+    public static final String Email = "emailKey";
+    public static final String Password = "passwordKey";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +43,25 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.loginBtn);
 
-
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int status = Loginuser(etEmail.getText().toString(),etPassword.getText().toString());
                 if(status == 1){
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putLong(Id, userModel.getId());
+                    editor.putString(Name,userModel.getName());
+                    editor.putString(Lastame, userModel.getLastname());
+                    editor.putString(Email, userModel.getEmail());
+                    editor.putString(Password, userModel.getPassword());
+                    editor.commit();
+                   // Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    //intent.putExtra("StringModel",stringModel);
+                    //startActivity(intent);
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    intent.putExtra("StringModel",stringModel);
                     startActivity(intent);
                     System.out.println("u klikua");
                 }else if(status == -1){
@@ -80,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             userModel.setLastname(cursor.getString(4));
 
             Gson gsonParser = new Gson();
-             stringModel = gsonParser.toJson(userModel);
+            stringModel = gsonParser.toJson(userModel);
 
             cursor.close();
             objDb.close();
