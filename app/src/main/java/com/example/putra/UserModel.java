@@ -7,17 +7,30 @@ public class UserModel {
    String lastname;
    String email;
    String password;
+   String documentId;
+
+
+   public String getDocumentId() {
+      return documentId;
+   }
+
+   public void setDocumentId(String documentId) {
+      this.documentId = documentId;
+   }
+
+
 
    public UserModel(){
 
    }
 
-   public UserModel(long id, String name, String lastname, String email, String password) {
+   public UserModel(long id, String name, String lastname, String email, String password,String documentId) {
       this.id =  id;
       this.name = name;
       this.lastname = lastname;
       this.email = email;
       this.password = password;
+      this.documentId = documentId;
    }
 
    public long getId() {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -34,7 +35,7 @@ import agency.tango.android.avatarview.loader.PicassoLoader;
 import agency.tango.android.avatarview.views.AvatarView;
 
 public class SettingsFragment extends Fragment {
-
+    Button btnAddPet;
     String documentId;
     ListView petListView;
     PetAdapter petAdapter;
@@ -50,6 +51,7 @@ public class SettingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view =  inflater.inflate(R.layout.fragment_settings, container, false);
         String  stringModel = getArguments().getString("stringModel");
         Gson gsonParser = new Gson();
@@ -63,7 +65,7 @@ public class SettingsFragment extends Fragment {
         userModel.setLastname(sharedPreferences.getString(LoginActivity.Lastame,"test"));
         userModel.setPassword(sharedPreferences.getString(LoginActivity.Password,"test"));
 
-
+        btnAddPet = view.findViewById(R.id.btnAddPet);
        petListView = view.findViewById(R.id.petListView);
        imageView = view.findViewById(R.id.imageViwer);
        tvName = view.findViewById(R.id.tvName);
@@ -77,7 +79,13 @@ public class SettingsFragment extends Fragment {
         tvName.setText(userModel.getName());
 
 
-
+       meLayout.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(getActivity(),EditProfile.class);
+               startActivity(intent);
+           }
+       });
 
        petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
@@ -96,6 +104,18 @@ public class SettingsFragment extends Fragment {
 
 
 
+       btnAddPet.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent = new Intent(getContext(),AddPetActivity.class);
+               startActivity(intent);
+
+           }
+       });
+
+
+
 
        return view;
     }
@@ -106,7 +126,7 @@ public class SettingsFragment extends Fragment {
         List<PetModel> pets = new ArrayList<>();
 
        ff.collection("pets")
-               .whereEqualTo("id",id+"")
+               .whereEqualTo("user",id+"")
                .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -126,7 +146,6 @@ public class SettingsFragment extends Fragment {
                                     });
                                 }
 
-
                             }
 
 
@@ -135,11 +154,6 @@ public class SettingsFragment extends Fragment {
                         }
                     }
                 });
-
-
-
-
-
 
     }
 

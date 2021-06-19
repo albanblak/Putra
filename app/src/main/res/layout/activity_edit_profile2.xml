@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfile2"
+
+    android:background="@color/light_grey">
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvName"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvFirstName"
+            />
+        <EditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginBottom="10dp"
+            android:inputType="text"
+            android:imeOptions="actionNext"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvLastName"
+            />
+        <EditText
+            android:id="@+id/etLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:inputType="text"
+            android:imeOptions="actionNext"/>
+
+
+    </LinearLayout>
+
+
+   <TextView
+       android:id="@+id/tvContactInfo"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/tvContactInfo"
+       android:textSize="20sp"
+       android:layout_below="@id/nameLayout"
+       android:layout_marginBottom="10dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="5dp"
+       />
+
+
+    <LinearLayout
+        android:id="@+id/contactLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvContactInfo"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingLeft="5dp"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            />
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:layout_marginBottom="10dp"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvLastName"
+            />
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="phone"
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitBtnProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/contactLayout"
+        android:layout_marginTop="10dp"/>
+
+
+
+</RelativeLayout>

@@ -17,4 +17,15 @@
     <string name="tvpetGender">Gender</string>
     <string name="tvpetSize">Size</string>
     <string name="tvpetBirth">Birth Year</string>
+    <string name="aboutMe">About Me</string>
+    <string name="becomeSitter">Become  a sitter</string>
+    <string name="tvSettings">Settings</string>
+    <string name="tvnotificationSettings">Notification Settings</string>
+    <string name="tvLogout">Logout</string>
+    <string name="tvName">Name</string>
+    <string name="tvFirstName">First Name</string>
+    <string name="tvLastName">Last Name</string>
+    <string name="tvContactInfo">Contact Info</string>
+    <string name="submit">Submit</string>
+    <string name="tvInfo">Info</string>
 </resources>

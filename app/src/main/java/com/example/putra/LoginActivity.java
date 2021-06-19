@@ -1,5 +1,6 @@
 package com.example.putra;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,12 +8,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -23,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     String stringModel;
     UserModel userModel = new UserModel();
-
+    String test;
     SharedPreferences sharedPreferences;
 
     public static final String MyPREFERENCES = "MyPrefs";
@@ -32,7 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     public static final String Lastame = "lastnameKey";
     public static final String Email = "emailKey";
     public static final String Password = "passwordKey";
+    public static final String IsLoggedIn  = "loggKey";
+    public static final String DocumentId = "documentIdKey";
 
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +61,44 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int status = Loginuser(etEmail.getText().toString(),etPassword.getText().toString());
                 if(status == 1){
+                    readData(new FirestoreCallback() {
+                        @Override
+                        public void onCallback(String string) {
+                            System.out.println("nga callbacki : " + string );
+                            userModel.setDocumentId(string);
 
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putLong(Id, userModel.getId());
-                    editor.putString(Name,userModel.getName());
-                    editor.putString(Lastame, userModel.getLastname());
-                    editor.putString(Email, userModel.getEmail());
-                    editor.putString(Password, userModel.getPassword());
-                    editor.commit();
-                   // Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    //intent.putExtra("StringModel",stringModel);
-                    //startActivity(intent);
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    startActivity(intent);
-                    System.out.println("u klikua");
+
+                            System.out.println("1" + test);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putLong(Id, userModel.getId());
+                            editor.putString(Name,userModel.getName());
+                            editor.putString(Lastame, userModel.getLastname());
+                            editor.putString(Email, userModel.getEmail());
+                            editor.putString(Password, userModel.getPassword());
+                            editor.putBoolean(IsLoggedIn,true);
+                            editor.putString(DocumentId,userModel.getDocumentId());
+                            editor.commit();
+
+
+
+                            // Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            //intent.putExtra("StringModel",stringModel);
+                            //startActivity(intent);
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            startActivity(intent);
+                            System.out.println("u klikua");
+                            finish();
+
+
+                        }
+                    });
+
+
+
+
+
+
+
                 }else if(status == -1){
                     Toast.makeText(LoginActivity.this,"User dont exists",Toast.LENGTH_SHORT).show();
                     System.out.println("nuk u klikua");
@@ -88,17 +123,18 @@ public class LoginActivity extends AppCompatActivity {
             cursor.moveToFirst();
             String dbUserEmail = cursor.getString(0);
             String dbUserPassword = cursor.getString(2);
-            System.out.println("POshte jane nga cursori");
-            System.out.println(cursor.getInt(0));
-            System.out.println(cursor.getString(1));
-            System.out.println(cursor.getString(2));
-            System.out.println(cursor.getString(3));
-            System.out.println(cursor.getString(4));
+
             userModel.setId(cursor.getInt(0));
             userModel.setEmail(cursor.getString(1));
             userModel.setPassword(cursor.getString(2));
             userModel.setName(cursor.getString(3));
             userModel.setLastname(cursor.getString(4));
+
+            //getFromFirestoreProfile(userModel.getId());
+
+
+            System.out.println("ky eshte testi " + test);
+
 
             Gson gsonParser = new Gson();
             stringModel = gsonParser.toJson(userModel);
@@ -113,4 +149,45 @@ public class LoginActivity extends AppCompatActivity {
         }
         return  -1;
     }
+
+
+
+
+
+
+  private void readData(FirestoreCallback firestoreCallback) {
+      firestore.collection("users")
+              .whereEqualTo("id",userModel.getId())
+              .get()
+              .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                  @Override
+                  public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                      if (task.isSuccessful()){
+
+                          for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                             test = documentSnapshot.getId();
+                          }
+
+                          firestoreCallback.onCallback(test);
+                      }
+                  }
+              })
+              .addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+                      Toast.makeText(LoginActivity.this,"ndodhi nje gabim",Toast.LENGTH_SHORT).show();
+                  }
+              });
+
+
+
+  }
+
+
+
+    private interface FirestoreCallback{
+        void onCallback(String string);
+    }
+
+
  }

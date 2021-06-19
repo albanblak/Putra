@@ -119,6 +119,7 @@ public class EditPetsAcitivity2 extends AppCompatActivity {
                                         intent1.putExtra("strPetModel", strPetModel);
                                         intent1.putExtra("documentId",task.getResult().getId());
                                         startActivity(intent1);
+                                        finish();
                                        }
                                    }
                                })
