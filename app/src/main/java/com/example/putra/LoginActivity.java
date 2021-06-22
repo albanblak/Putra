@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String Password = "passwordKey";
     public static final String IsLoggedIn  = "loggKey";
     public static final String DocumentId = "documentIdKey";
+    public static final String ImageUrl = "imageUrlKey";
 
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(Password, userModel.getPassword());
                             editor.putBoolean(IsLoggedIn,true);
                             editor.putString(DocumentId,userModel.getDocumentId());
-                            editor.commit();
+                            editor.apply();
 
 
 

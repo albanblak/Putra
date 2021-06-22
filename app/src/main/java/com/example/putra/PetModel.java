@@ -7,7 +7,7 @@ public class PetModel {
     String breed;
     String size;
     String user;
-    String image;
+    String imageUrl;
     String gender;
     String neutered;
     String vaccinated;
@@ -61,12 +61,12 @@ public class PetModel {
         return name;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String image) {
+        this.imageUrl = image;
     }
 
     public PetModel(int id,String name, String type, String breed, String size, String user, String image) {
@@ -76,7 +76,7 @@ public class PetModel {
         this.breed = breed;
         this.size = size;
         this.user = user;
-        this.image = image;
+        this.imageUrl = image;
     }
 
     public void setName(String name) {

@@ -2,6 +2,7 @@ package com.example.putra;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button logBtnDirect, regBtnDirect;
 
+    @Override
+    public void onBackPressed() {
+       moveTaskToBack(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +26,16 @@ public class MainActivity extends AppCompatActivity {
         logBtnDirect = findViewById(R.id.logBtnDirect);
         regBtnDirect = findViewById(R.id.regBtnDirect);
 
-       SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES,MODE_PRIVATE);
+       SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         boolean isLogedIn = sharedPreferences.getBoolean(LoginActivity.IsLoggedIn,false);
+
         if(isLogedIn){
-           Intent intent = new Intent(MainActivity.this,DashboardActivity.class);
-           //finish();
-      }
+            Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
 
 
         regBtnDirect.setOnClickListener(new View.OnClickListener() {

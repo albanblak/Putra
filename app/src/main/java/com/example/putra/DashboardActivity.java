@@ -27,6 +27,13 @@ public class DashboardActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
     String stringModel;
+
+
+    @Override
+    public void onBackPressed() {
+       moveTaskToBack(true);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,7 @@ public class DashboardActivity extends AppCompatActivity {
         userModel.setLastname(sharedPreferences.getString(LoginActivity.Lastame,"test"));
         userModel.setEmail(sharedPreferences.getString(LoginActivity.Email,"test"));
         userModel.setPassword(sharedPreferences.getString(LoginActivity.Password,"test"));
+
 
 /*
         Intent intent = getIntent();

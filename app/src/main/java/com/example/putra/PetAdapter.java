@@ -54,7 +54,7 @@ public class PetAdapter  extends BaseAdapter {
         }
 
         petHolder.petTvName.setText(dataSource.get(position).getName());
-        imageLoader.loadImage(petHolder.avatarView, dataSource.get(position).getImage(),"test");
+        imageLoader.loadImage(petHolder.avatarView, dataSource.get(position).getImageUrl(),"test");
         RelativeLayout petLinear = convertView.findViewById(R.id.linearPet);
 
         return convertView;

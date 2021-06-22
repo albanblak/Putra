@@ -8,7 +8,15 @@ public class UserModel {
    String email;
    String password;
    String documentId;
+   String imageUrl;
 
+   public String getImageUrl() {
+      return imageUrl;
+   }
+
+   public void setImageUrl(String imageUrl) {
+      this.imageUrl = imageUrl;
+   }
 
    public String getDocumentId() {
       return documentId;

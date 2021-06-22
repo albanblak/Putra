@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Putra">
-        <activity android:name=".AddPetActivity"></activity>
+        <activity android:name=".UploadImageActivity"></activity>
+        <activity android:name=".BecomeSitterActivity" />
+        <activity android:name=".AddPetActivity" />
         <activity
             android:name=".EditProfile2"
             android:parentActivityName=".EditProfile" />

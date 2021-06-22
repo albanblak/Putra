@@ -1,5 +1,6 @@
 package com.example.putra;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,12 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 public class EditPetsActivity extends AppCompatActivity {
     TextView tvBreed,tvType,tvGender, tvSize,tvBirth, tvNeutered, tvVaccinated;
-    Button btnEdit;
+    Button btnEdit, deletePetBtn;
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,7 @@ public class EditPetsActivity extends AppCompatActivity {
         tvSize = findViewById(R.id.tvSize);
         tvNeutered = findViewById(R.id.tvNeutered);
         tvVaccinated = findViewById(R.id.tvVaccinated);
+        deletePetBtn = findViewById(R.id.deletePetBtn);
 
         Intent intent = getIntent();
         String petModelString = intent.getStringExtra("strPetModel");
@@ -52,6 +59,29 @@ public class EditPetsActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+       deletePetBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               firestore.collection("pets")
+                       .document(documentId)
+                       .delete()
+                       .addOnSuccessListener(new OnSuccessListener<Void>() {
+                           @Override
+                           public void onSuccess(Void aVoid) {
+                               Toast.makeText(EditPetsActivity.this, "U fshi me sukses", Toast.LENGTH_SHORT).show();
+                               finish();
+                           }
+                       })
+                       .addOnFailureListener(new OnFailureListener() {
+                           @Override
+                           public void onFailure(@NonNull Exception e) {
+                               Toast.makeText(EditPetsActivity.this, "task failed + " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                           }
+                       });
+           }
+       });
+
 
 
     }

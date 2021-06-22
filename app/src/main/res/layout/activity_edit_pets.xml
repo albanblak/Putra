@@ -215,11 +215,29 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btnEdit"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
-        android:layout_gravity="center_horizontal"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/deletePetBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

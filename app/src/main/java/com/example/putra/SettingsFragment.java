@@ -14,14 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,10 +48,10 @@ public class SettingsFragment extends Fragment {
     TextView tvEditProfile;
     AvatarView imageView;
     IImageLoader imageLoader;
+
     FirebaseFirestore ff = FirebaseFirestore.getInstance();
     CollectionReference pets = ff.collection("pets");
-
-
+    SharedPreferences sharedPreferences;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,14 +60,17 @@ public class SettingsFragment extends Fragment {
         String  stringModel = getArguments().getString("stringModel");
         Gson gsonParser = new Gson();
        // UserModel userModel = gsonParser.fromJson(stringModel,UserModel.class);
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = this.getActivity().getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(LoginActivity.IsLoggedIn,false)){
+            getActivity().finish();
+        }
 
         UserModel userModel = new UserModel();
-        userModel.setEmail(sharedPreferences.getString(LoginActivity.Email,"test"));
-        userModel.setName(sharedPreferences.getString(LoginActivity.Name,"test"));
+        userModel.setEmail(sharedPreferences.getString(LoginActivity.Email,null));
+        userModel.setName(sharedPreferences.getString(LoginActivity.Name,null));
         userModel.setId((int) sharedPreferences.getLong(LoginActivity.Id,0));
-        userModel.setLastname(sharedPreferences.getString(LoginActivity.Lastame,"test"));
-        userModel.setPassword(sharedPreferences.getString(LoginActivity.Password,"test"));
+        userModel.setLastname(sharedPreferences.getString(LoginActivity.Lastame,null));
+        userModel.setPassword(sharedPreferences.getString(LoginActivity.Password,null));
 
         btnAddPet = view.findViewById(R.id.btnAddPet);
        petListView = view.findViewById(R.id.petListView);
@@ -75,9 +82,14 @@ public class SettingsFragment extends Fragment {
         GetData(userModel.getId());
         petListView.setAdapter(petAdapter);
         imageLoader = new PicassoLoader();
-        imageLoader.loadImage(imageView,"https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png","user");
         tvName.setText(userModel.getName());
 
+        if(userModel.getImageUrl() == null){
+
+            imageLoader.loadImage(imageView,"https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png","user");
+        }else{
+            imageLoader.loadImage(imageView,userModel.getImageUrl(),"test");
+        }
 
        meLayout.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -87,9 +99,12 @@ public class SettingsFragment extends Fragment {
            }
        });
 
-       petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+      petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               System.out.println("u kliku");
                PetModel petModel = petAdapter.dataSource.get(position);
                Gson gsonParser = new Gson();
                String  strPetModel = gsonParser.toJson(petModel);
@@ -104,6 +119,14 @@ public class SettingsFragment extends Fragment {
 
 
 
+
+
+
+
+
+
+
+
        btnAddPet.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -114,8 +137,19 @@ public class SettingsFragment extends Fragment {
            }
        });
 
+        getImage(new EditProfile.FirebaseCallBack() {
+            @Override
+            public void onCallBack(String string) {
+                if(string != null){
 
-
+                    userModel.setImageUrl(string);
+                    imageLoader.loadImage(imageView,userModel.getImageUrl(),"test");
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(LoginActivity.ImageUrl,string);
+                    editor.apply();
+                }
+            }
+        });
 
        return view;
     }
@@ -145,16 +179,30 @@ public class SettingsFragment extends Fragment {
                                         }
                                     });
                                 }
-
                             }
-
-
                         }else{
                             Log.w("FIREBASE", "error getting documents", task.getException());
                         }
                     }
                 });
 
+    }
+
+
+    public void getImage(EditProfile.FirebaseCallBack firebaseCallBack){
+        ff.collection("users")
+                .document(sharedPreferences.getString(LoginActivity.DocumentId,"defValue"))
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.getString("imageUrl") == ""){
+                            firebaseCallBack.onCallBack("https://prairietherapy.ca/wp-content/uploads/2017/03/Blank-Profile-pic.png");
+                        }else{
+                            firebaseCallBack.onCallBack(documentSnapshot.getString("imageUrl"));
+                        }
+                    }
+                });
     }
 
 

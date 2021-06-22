@@ -64,6 +64,7 @@ public class EditPetsAcitivity2 extends AppCompatActivity {
         etPetGender.setText(petModel.getGender());
         etPetSize.setText(petModel.getSize());
         etPetBirth.setText(petModel.getYearOfBirth());
+        imageLoader.loadImage(imageView, petModel.getImageUrl(),"test");
 
         if(petModel.getVaccinated().equals("true")){
             vaccinatedSwitch.setChecked(true);
