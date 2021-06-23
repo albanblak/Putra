@@ -23,7 +23,7 @@ import java.util.Map;
 public class BecomeSitterActivity extends AppCompatActivity {
 
 
-   EditText service, description, price, title;
+   EditText service, description, price, title, city;
    Button submitBtn;
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     SharedPreferences shp;
@@ -50,6 +50,7 @@ public class BecomeSitterActivity extends AppCompatActivity {
         price = findViewById(R.id.etPrice);
         submitBtn = findViewById(R.id.btnSubmit);
         title = findViewById(R.id.etSitterTitle);
+        city = findViewById(R.id.etCity);
    }
 
 
@@ -81,6 +82,7 @@ public class BecomeSitterActivity extends AppCompatActivity {
         sitter.put("userName", shp.getString(LoginActivity.Name,"defValue"));
         sitter.put("title",title.getText().toString());
         sitter.put("id",PetId.generateUniqueId());
+        sitter.put("city",city.getText().toString());
         sitter.put("imageUrl", shp.getString(LoginActivity.ImageUrl,"defValue"));
 
         return sitter;

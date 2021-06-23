@@ -26,16 +26,18 @@
        android:id="@+id/melayout"
        android:orientation="horizontal"
        android:background="@android:color/white"
-       android:layout_below="@+id/me" >
+       android:layout_below="@+id/me"
+       android:paddingLeft="10dp"
+       android:paddingBottom="10dp">
 
       <agency.tango.android.avatarview.views.AvatarView
-          android:layout_width="70dp"
-          android:layout_height="70dp"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
           app:av_border_color="@android:color/white"
           app:av_border_width="4dp"
           app:av_text_size_percentage="35"
           android:id="@+id/imageViwer"
-          android:paddingLeft="5dp"
+          android:paddingLeft="10dp"
           android:paddingTop="5dp"/>
 
 
@@ -104,14 +106,15 @@
    </TextView>
 
 
-   <Button
-       android:layout_width="wrap_content"
+   <androidx.appcompat.widget.AppCompatButton
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Add Pet"
        android:id="@+id/btnAddPet"
-       android:layout_below="@id/petListView">
+       android:layout_below="@id/petListView"
+       android:background="@color/white">
 
-   </Button>
+   </androidx.appcompat.widget.AppCompatButton>
 
 
 

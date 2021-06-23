@@ -10,21 +10,28 @@ public class SitterModel {
    public String title;
    public String userName;
    public String imageUrl;
+   private String city;
 
+    public String getCity() {
+        return city;
+    }
 
-
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public SitterModel(){
 
     }
 
-    public SitterModel(long id, String service, String description, String price, long userId, String imageUrl) {
+    public SitterModel(long id, String service, String description, String price, long userId, String imageUrl, String city) {
         this.id = id;
         this.service = service;
         this.description = description;
         this.price = price;
         this.userId = (int) userId;
         this.imageUrl = imageUrl;
+        this.city = city;
 
 
     }

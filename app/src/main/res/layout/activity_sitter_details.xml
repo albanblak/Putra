@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SitterDetailsActivity"
+    android:background="@color/light_grey"
+    >
+
+
+   <ImageView
+       android:id="@+id/imageView"
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+      />
+
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:background="@color/white"
+
+      >
+
+        <agency.tango.android.avatarview.views.AvatarView
+          android:id="@+id/avatarView"
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tvName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Name"
+           android:layout_toRightOf="@id/avatarView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+        />
+
+       <TextView
+           android:id="@+id/tvCity"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="city"
+           android:layout_below="@id/tvName"
+           android:layout_toRightOf="@id/avatarView"
+           android:layout_marginLeft="15dp"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="20dp"
+           android:text="1231231231"
+           android:textSize="15sp"
+           android:layout_centerVertical="true"/>
+
+   </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp">
+
+       <ImageView
+           android:id="@+id/favoriteIcon"
+           android:layout_width="20dp"
+           android:layout_height="20dp"
+           android:layout_marginRight="5dp"
+           android:layout_gravity="center_vertical"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 times favorited"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/green"/>
+
+        <ImageView
+            android:id="@+id/viewIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="263 times viewed"
+            android:textColor="@color/light_red"/>
+
+
+
+
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/contactBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Contact Margherita"
+        android:textColor="@color/white"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:text="@string/aboutMe"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        >
+
+       <TextView
+           android:id="@+id/tvDescription"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginLeft="10dp"
+
+           android:background="@color/white"/>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Service"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_marginBottom="30dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
+
+       <ImageView
+           android:id="@+id/clocIcon"
+           android:layout_width="30dp"
+           android:layout_height="30dp"
+           android:layout_marginLeft="10dp"
+           />
+
+
+        <TextView
+            android:id="@+id/tvService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/clocIcon"
+            android:textSize="20sp"
+            android:text="service"/>
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp"
+            android:text="price"/>
+    </RelativeLayout>
+</LinearLayout>
+</ScrollView>

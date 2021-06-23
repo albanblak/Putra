@@ -1,9 +1,11 @@
 package com.example.putra;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +40,27 @@ public class FindFragment extends Fragment {
         sittersListView = view.findViewById(R.id.sitterListView);
         sitterAdapter = new SitterAdapter(getContext()) ;
         sittersListView.setAdapter(sitterAdapter);
+
       getData(new FirestoreCall() {
           @Override
           public void onCallBack1(List<SitterModel> sitterModelList) {
 
           }
       });
+
+
+      sittersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+          @Override
+          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+              Gson gson = new Gson();
+              String sitterModelStr = gson.toJson(sitterAdapter.dataSource.get(position));
+              Intent intent = new Intent(getContext(),SitterDetailsActivity.class);
+              intent.putExtra("sitterModelStr",sitterModelStr);
+              startActivity(intent);
+          }
+      });
+
+
 
        return view;
     }
@@ -116,9 +134,6 @@ public class FindFragment extends Fragment {
         void onCallBack1(List<SitterModel> sitterModelList);
    }
 
-   interface Tets{
-        void onCallBack(SitterModel sitterModel);
-   }
 
 
 }

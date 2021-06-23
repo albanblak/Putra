@@ -134,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.put("email",email);
         user.put("password",password);
         user.put("imageUrl","https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg");
+        user.put("phone","");
 
 
       db.collection("users")

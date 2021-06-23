@@ -11,7 +11,9 @@
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Title"/>
+       android:text="Title"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="20dp"/>
 
    <EditText
        android:id="@+id/etSitterTitle"
@@ -21,7 +23,8 @@
     <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Service"/>
+         android:text="Service"
+        android:layout_marginLeft="10dp"/>
     <EditText
         android:id="@+id/etService"
         android:layout_width="match_parent"
@@ -31,7 +34,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Price"/>
+        android:text="Price"
+        android:layout_marginLeft="10dp"/>
     <EditText
         android:id="@+id/etPrice"
         android:layout_width="match_parent"
@@ -41,20 +45,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"/>
+        android:text="Description"
+        android:layout_marginLeft="10dp"/>
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
-    <Button
-        android:id="@+id/btnSubmit"
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:layout_marginLeft="10dp"
+        />
+    <EditText
+        android:id="@+id/etCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+     />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/white"
         />
 
 
