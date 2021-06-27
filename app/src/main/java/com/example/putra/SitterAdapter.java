@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
@@ -56,6 +58,8 @@ public class SitterAdapter extends BaseAdapter {
         picassoLoader.loadImage(sitterHolder.avatarView,imageUrl,"test");
 
         // sitterHolder.name.setText(dataSource.get(position).getUserId());
+        Animation animation = AnimationUtils.loadAnimation(c,R.anim.fade_in);
+        convertView.startAnimation(animation);
 
       return convertView;
     }
